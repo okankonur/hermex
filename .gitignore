@@ -1,0 +1,51 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/rss-ui/dist
+/rss-ui/tmp
+/rss-ui/out-tsc
+/rss-ui/bazel-out
+
+# Node
+/rss-ui/node_modules
+/rss-ui/npm-debug.log
+/rss-ui/yarn-error.log
+
+#angular
+/rss-ui/.angular
+/rss-ui/.*
+
+
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+/rss-ui/.vscode/*
+/rss-ui/!.vscode/settings.json
+/rss-ui/!.vscode/tasks.json
+/rss-ui/!.vscode/launch.json
+/rss-ui/!.vscode/extensions.json
+/rss-ui/.history/*
+
+# Miscellaneous
+/rss-ui/.angular/cache
+/rss-ui/.sass-cache/
+/rss-ui/connect.lock
+/rss-ui/coverage
+/rss-ui/libpeerconnection.log
+/rss-ui/testem.log
+/rss-ui/typings
+
+# System files
+/rss-ui/.DS_Store
+/rss-ui/Thumbs.db
+
+#executable files
+rss-parser-server

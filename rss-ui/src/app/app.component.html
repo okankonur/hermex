@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="column" *ngFor="let sourceFeed of feeds">
+      <h1>{{ sourceFeed.Host }}
+        <img [src]="'data:image/png;base64,'+sourceFeed.Favicon" class="inline-image">
+      </h1>
+      <div *ngFor="let feed of sourceFeed.Items" class="rss-item">
+        <h2 class="title">{{ feed.Title }}</h2>
+        <p class="description">{{ feed.Description }}</p>
+        <a class="link" href="feed.Link">{{ feed.Link }}</a>
+      </div>
+    </div>
+
+</div>
+
