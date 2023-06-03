@@ -1,4 +1,4 @@
-module github.com/okankonur/rss-parser-server
+module github.com/okankonur/news-summary
 
 go 1.19
 
