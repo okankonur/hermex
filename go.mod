@@ -1,4 +1,4 @@
-module github.com/okankonur/news-summary
+module github.com/okankonur/hermex
 
 go 1.19
 
