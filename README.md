@@ -75,7 +75,6 @@ This is a sample web project that aims to help the viewer get latest news from d
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
@@ -91,7 +90,6 @@ This is an example of how to list things you need to use the software and how to
   ```   
 
 ### Installation
-
 
 1. Clone the repo
    ```sh
