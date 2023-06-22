@@ -116,7 +116,9 @@ func feedHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/feeds", feedHandler).Methods("GET")
-	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./rss-ui/dist/rss-index/"))))
+	dir := "./rss-ui/dist/rss-index/"
+	log.Printf("Serving files from directory: %s", dir)
+	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(dir))))
 	log.Println("Server listening on http://localhost:8080")
 
 	http.Handle("/", r)

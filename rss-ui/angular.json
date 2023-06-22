@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "rss-frontend:build:production"
+              "browserTarget": "rss-index:build:production"
             },
             "development": {
-              "browserTarget": "rss-frontend:build:development"
+              "browserTarget": "rss-index:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rss-frontend:build"
+            "browserTarget": "rss-index:build"
           }
         },
         "test": {

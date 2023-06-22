@@ -11,7 +11,7 @@ import { SourceFeed } from './models/feed-item.model';
 
 export class AppComponent implements OnInit{
   feeds!: SourceFeed[];
-  title = 'rss-frontend';
+  title = 'rss-index';
 
   constructor(private feedService: FeedService) {} 
 
