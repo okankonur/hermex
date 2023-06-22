@@ -37,17 +37,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 # Start with a base image containing Javascript runtime
 RUN mkdir /hermex
 RUN mkdir /hermex/rss-ui
-FROM node:latest as frontend_builder
-WORKDIR /hermex/rss-ui
-
-# Add the source code of the frontend to the image
-
-COPY rss-ui/package.json /hermex/rss-ui
-RUN npm install
-RUN npm install -g @angular/cli
-
-COPY rss-ui/ /hermex/rss-ui
-RUN ng build --configuration production
+RUN mkdir /hermex/rss-ui/dist
+RUN mkdir /hermex/rss-ui/dist/rss-index
 
 # Final stage
 FROM alpine:latest
@@ -55,8 +46,11 @@ FROM alpine:latest
 # Install ca-certificates so that HTTPS works consistently
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
-COPY --from=backend_builder /go/src/app/main /hermex/main
-COPY --from=frontend_builder /hermex/rss-ui/dist /hermex/rss-ui/dist
+
+WORKDIR /hermex
+COPY --from=backend_builder /go/src/app/main .
+COPY rss-ui/dist/rss-index rss-ui/dist/rss-index 
+
 
 RUN chmod -R 777 /hermex
 
