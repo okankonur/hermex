@@ -28,17 +28,23 @@ FROM golang:latest AS backend_builder
 # Copy the local package files to the container's workspace.
 ADD . /go/src/app
 
+
 # Build the Go app
 WORKDIR /go/src/app
 RUN go get -d -v ./...
 RUN go install -v ./...
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
+
 # Start with a base image containing Javascript runtime
-RUN mkdir /hermex
-RUN mkdir /hermex/rss-ui
-RUN mkdir /hermex/rss-ui/dist
-RUN mkdir /hermex/rss-ui/dist/rss-index
+FROM node:latest as frontend_builder
+WORKDIR /app/rss-ui
+COPY rss-ui/package.json .
+RUN npm install
+RUN npm install -g @angular/cli
+
+COPY rss-ui/ .
+RUN ng build --configuration production
 
 # Final stage
 FROM alpine:latest
@@ -46,13 +52,9 @@ FROM alpine:latest
 # Install ca-certificates so that HTTPS works consistently
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
-
 WORKDIR /hermex
 COPY --from=backend_builder /go/src/app/main .
-COPY rss-ui/dist/rss-index rss-ui/dist/rss-index 
-
-
-RUN chmod -R 777 /hermex
+COPY --from=frontend_builder /app .
 
 # Set the command to run your app using CMD which defines your runtime
 # Here we are using the "main" binary that was created in the previous step as our entrypoint

@@ -49,3 +49,7 @@
 
 #executable files
 hermex
+
+
+.dockerignore
+fly.toml
